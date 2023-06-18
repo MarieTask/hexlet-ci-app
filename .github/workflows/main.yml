@@ -6,9 +6,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: snyk/actions/node@v0.3.0
+        env: 
+          SNYK_TOKEN: ${{ 0165f875-f950-4602-9849-79e9e1b42d1c }}
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '18.x'
           cache: npm
       - run: make setup
       - run: make test
