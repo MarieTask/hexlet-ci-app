@@ -1,7 +1,5 @@
-name: Run commands on different operating systems
-on:
-  push:
-    branches: [ main ]
+name: main
+on: push
 # Пример для проекта на Node.js
 jobs:
   build: # имя взято для примера
@@ -13,9 +11,12 @@ jobs:
       # Устанавливаем Node.js
       - uses: actions/setup-node@v3
       # Ставим зависимости
+      - run: install build
       - run: npm install
+      - run: npm run build
+      - run: npm start
       # Запускаем линтер
-      - run: npm run lint
+      - run: npx eslint .
       # Запускаем тесты
       # у шагов может быть имя, иногда это помогает отладке
       # имя выводится на Github при просмотре сборки
